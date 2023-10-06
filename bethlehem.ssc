@@ -40,7 +40,7 @@ core.clear("natural");
 StelMovementMgr.zoomTo(180, 0.1);
 StelMovementMgr.lookSouth(true);
 core.wait(0.1);
-core.setGuiVisible(false);
+//core.setGuiVisible(false);
 
 //
 //  - move from present time & location to Bethlehem (31.7° N / 35.2° E)  before sunrise on 12 August 3 BC
@@ -158,4 +158,4 @@ ConstellationMgr.setFlagIsolateSelected(false);
 ConstellationMgr.selectAllConstellations();
 core.wait(0.1);
 core.setTimeRate(200);
-core.setGuiVisible(true);
+//core.setGuiVisible(true);
