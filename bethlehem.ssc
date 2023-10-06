@@ -2,7 +2,7 @@
 // Name: Christmas Star
 // License: Public Domain
 // Author: Alexander V. Wolf
-// Version: 0.19.3-2
+// Version: 0.19.3-3
 // Description: Look at Christmas Star in Bethlehem
 
 // for version 0.19.3
@@ -28,17 +28,24 @@ function waitNextStep()
 
 function showText(text, time)
 {
-    LabelMgr.labelScreen(text, 20, 20, true, 30, "#ff0000");
+    LabelMgr.labelHorizon(text, 0, 45, true, 30, "#ff0000");
     core.wait(time);
 }
 
 var zodiac = new Array("Leo", "Cancer", "Gemini", "Taurus", "Aries", "Pisces", "Aquarius");
 
+core.setProjectionMode("ProjectionFisheye");
+core.wait(0.1);
+//core.setDiskViewport(true);
+core.setFlagGravityLabels(true);
+core.setSphericMirror(true);
+core.wait(0.1);
 core.setDate("-0002-08-12T02:20:00", "utc");
 core.wait(0.1);
 core.clear("natural");
+//StelMovementMgr.setFlagLockEquPos(true);
 StelMovementMgr.zoomTo(180, 0.1);
-StelMovementMgr.lookSouth(true);
+StelMovementMgr.lookZenith();
 core.wait(0.1);
 //core.setGuiVisible(false);
 
@@ -87,7 +94,8 @@ core.wait(0.1);
 showText("Date: " + core.getDate("local"), 1);
 
 core.selectObjectByName("Jupiter", false);
-StelMovementMgr.setFlagTracking(true);
+StelMovementMgr.lookZenith();
+//StelMovementMgr.setFlagTracking(true);
 
 // good for flat screens
 //StelMovementMgr.zoomTo(12, 5);
@@ -105,6 +113,7 @@ core.wait(5);
 LabelMgr.deleteAllLabels();
 ConstellationMgr.deselectConstellations();
 core.selectConstellationByName("Leo");
+StelMovementMgr.lookZenith();
 core.wait(0.1);
 
 // real annual motion
