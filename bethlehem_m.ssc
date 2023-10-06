@@ -4,7 +4,7 @@
 // Author: Alexander V. Wolf
 // Description: Look at Christmas Star in Bethlehem
 
-// for series 23.0
+// for version 0.19.3
 
 var zodiac = new Array("Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpius", "Ophiuchus", "Sagittarius", "Capricornus", "Aquarius", "Pisces", "Aries", "Taurus");
 
@@ -24,7 +24,6 @@ core.wait(3);
 
 core.setDate("-0002-08-12T02:20:00", "utc");
 core.wait(0.1);
-StelMovementMgr.lookSouth(true);
 LabelMgr.deleteAllLabels();
 
 StelMovementMgr.zoomTo(210, 3);
@@ -39,7 +38,6 @@ core.wait(3);
 NebulaMgr.setFlagHints(false);
 SolarSystem.setFlagLabels(true);
 
-ConstellationMgr.deselectConstellations();
 ConstellationMgr.setFlagArt(true);
 ConstellationMgr.setFlagBoundaries(true);
 ConstellationMgr.setFlagLines(true);
@@ -48,7 +46,7 @@ ConstellationMgr.setFlagIsolateSelected(true);
 
 for(i=0; i<zodiac.length; i++)
 {
-	ConstellationMgr.selectConstellation(zodiac[i]);
+	core.selectConstellationByName(zodiac[i]);
 	core.wait(0.1);
 }
 
@@ -71,14 +69,17 @@ core.wait(5);
 StelMovementMgr.zoomTo(120, 5);
 core.wait(5);
 LabelMgr.deleteAllLabels();
-ConstellationMgr.deselectConstellations();
 core.wait(0.1);
 
 //
 //  - annual motion forward until morning of 01 June 2 BC, all constellations fade except Leo
 //
 
-ConstellationMgr.selectConstellation("Leo");
+ConstellationMgr.setFlagIsolateSelected(false);
+core.selectConstellationByName("Leo");
+core.wait(0.1);
+ConstellationMgr.setFlagIsolateSelected(true);
+core.selectConstellationByName("Leo");
 core.wait(0.1);
 
 // real annual motion
@@ -128,6 +129,6 @@ LabelMgr.deleteAllLabels();
 //
 
 ConstellationMgr.setFlagIsolateSelected(false);
-ConstellationMgr.selectAllConstellations();
+core.selectObjectByName("Leo", false);
 core.wait(0.1);
 core.setTimeRate(200);
