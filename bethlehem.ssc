@@ -20,7 +20,7 @@ LabelMgr.labelScreen("Go to Bethlehem (Western Asia) before sunrise",20,20, true
 core.wait(0.1);
 
 core.setObserverLocation(35.2, 31.7, 1, 3, "Bethlehem, Western Asia", "Earth");
-core.wait(0.1);
+core.wait(3);
 
 core.setDate("-0002-08-12T02:20:00", "utc");
 core.wait(0.1);
@@ -62,7 +62,7 @@ core.wait(5);
 core.setTimeRate(1);
 core.wait(0.1);
 
-LabelMgr.labelScreen("Date: " + core.getDate(),20,20, true, 20,"#ff0000");
+LabelMgr.labelScreen("Date: " + core.getDate("local"),20,20, true, 20,"#ff0000");
 
 core.selectObjectByName("Jupiter", false);
 StelMovementMgr.setFlagTracking(true);
@@ -88,11 +88,12 @@ for (i=0; i<323; i++)
     core.setDate("+1 solar day");
     core.wait(0.1);
 }
-
+core.setDate("+2 hours");
+core.wait(0.1);
 // sunrise
 //core.setDate("-0001-07-01T04:52:00", "local");
 //core.wait(0.1);
-LabelMgr.labelScreen("Date: " + core.getDate(),20,20, true, 20,"#ff0000");
+LabelMgr.labelScreen("Date: " + core.getDate("local"),20,20, true, 20,"#ff0000");
 core.wait(5);
 LabelMgr.deleteAllLabels();
 
@@ -101,13 +102,12 @@ LabelMgr.deleteAllLabels();
 //
 
 // real diurnal motion
-for (i=0; i<28; i++)
+for (i=0; i<24; i++)
 {
     core.setDate("+30 minutes");
     core.wait(0.1);
 }
-
-LabelMgr.labelScreen("Date: " + core.getDate(),20,20, true, 20,"#ff0000");
+LabelMgr.labelScreen("Date: " + core.getDate("local"),20,20, true, 20,"#ff0000");
 core.wait(5);
 LabelMgr.deleteAllLabels();
 
@@ -120,7 +120,7 @@ for (i=0; i<16; i++)
     core.setDate("+1 solar day");
     core.wait(.1);
 }
-    LabelMgr.labelScreen("Date: " + core.getDate(),20,20, true, 20,"#ff0000");
+LabelMgr.labelScreen("Date: " + core.getDate("local"),20,20, true, 20,"#ff0000");
 core.wait(5);
 LabelMgr.deleteAllLabels();
 
