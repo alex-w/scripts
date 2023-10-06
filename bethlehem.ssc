@@ -2,7 +2,7 @@
 // Name: Christmas Star
 // License: Public Domain
 // Author: Alexander V. Wolf
-// Version: 0.19.3-1
+// Version: 0.19.3-2
 // Description: Look at Christmas Star in Bethlehem
 
 // for version 0.19.3
@@ -26,9 +26,18 @@ function waitNextStep()
     core.setJDay(jd);
 }
 
-var zodiac = new Array("Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpius", "Ophiuchus", "Sagittarius", "Capricornus", "Aquarius", "Pisces", "Aries", "Taurus");
+function showText(text, time)
+{
+    LabelMgr.labelScreen(text, 20, 20, true, 30, "#ff0000");
+    core.wait(time);
+}
 
+var zodiac = new Array("Leo", "Cancer", "Gemini", "Taurus", "Aries", "Pisces", "Aquarius");
+
+core.setDate("-0002-08-12T02:20:00", "utc");
+core.wait(0.1);
 core.clear("natural");
+StelMovementMgr.zoomTo(180, 0.1);
 StelMovementMgr.lookSouth(true);
 core.wait(0.1);
 core.setGuiVisible(false);
@@ -37,15 +46,10 @@ core.setGuiVisible(false);
 //  - move from present time & location to Bethlehem (31.7° N / 35.2° E)  before sunrise on 12 August 3 BC
 //
 
-LabelMgr.labelScreen("Go to Bethlehem (Western Asia) before sunrise",20,20, true, 20,"#ff0000");
-core.wait(0.1);
+showText("Go to Bethlehem (Western Asia) before sunrise", 1);
 
-core.setDate("-0002-08-12T02:20:00", "utc");
-core.wait(0.1);
-core.setObserverLocation(35.2, 31.7, 1, 3, "Bethlehem, Western Asia", "Earth");
-core.wait(3);
-StelMovementMgr.zoomTo(210, 3);
-core.wait(3);
+core.setObserverLocation(35.2, 31.7, 1, 5, "Bethlehem, Western Asia", "Earth");
+core.wait(5);
 
 //waitNextStep();
 
@@ -75,19 +79,21 @@ for(i=0; i<zodiac.length; i++)
 // - diurnal motion forward a little, for a better view of Jupiter and Leo;  calendar date appears at the front
 //
 
-core.setTimeRate(100);
+core.setTimeRate(200);
 core.wait(5);
 core.setTimeRate(1);
 core.wait(0.1);
 
-LabelMgr.labelScreen("Date: " + core.getDate("local"),20,20, true, 20,"#ff0000");
+showText("Date: " + core.getDate("local"), 1);
 
 core.selectObjectByName("Jupiter", false);
 StelMovementMgr.setFlagTracking(true);
-StelMovementMgr.zoomTo(12, 5);
-core.wait(5);
 
-StelMovementMgr.zoomTo(120, 5);
+// good for flat screens
+//StelMovementMgr.zoomTo(12, 5);
+//core.wait(7);
+//StelMovementMgr.zoomTo(180, 5);
+
 core.wait(5);
 
 //waitNextStep();
@@ -107,10 +113,10 @@ for (i=0; i<323; i++)
     core.setDate("+1 day");
     core.wait(0.1);
 }
-core.setDate("+2 hours");
-core.wait(0.1);
-LabelMgr.labelScreen("Date: " + core.getDate("local"),20,20, true, 20,"#ff0000");
-core.wait(5);
+core.setTimeRate(500);
+core.waitFor("-0001-07-01T07:20:00", "local");
+core.setTimeRate(1);
+showText("Date: " + core.getDate("local"), 5);
 LabelMgr.deleteAllLabels();
 
 //waitNextStep();
@@ -123,10 +129,9 @@ LabelMgr.deleteAllLabels();
 for (i=0; i<25; i++)
 {
     core.setDate("+30 minutes");
-    core.wait(0.1);
+    core.wait(0.15);
 }
-LabelMgr.labelScreen("Date: " + core.getDate("local"),20,20, true, 20,"#ff0000");
-core.wait(5);
+showText("Date: " + core.getDate("local"), 5);
 
 //waitNextStep();
 
@@ -138,10 +143,9 @@ LabelMgr.deleteAllLabels();
 for (i=0; i<16; i++)
 {
     core.setDate("+1 day");
-    core.wait(0.1);
+    core.wait(0.15);
 }
-LabelMgr.labelScreen("Date: " + core.getDate("local"),20,20, true, 20,"#ff0000");
-core.wait(5);
+showText("Date: " + core.getDate("local"), 5);
 
 //waitNextStep();
 
